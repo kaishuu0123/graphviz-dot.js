@@ -1,0 +1,50 @@
+graph {
+	graph [label=<<FONT POINT-SIZE="20">nfldb Entity&#45;Relationship diagram (condensed)</FONT>>,
+		labeljust=l,
+		labelloc=t,
+		rankdir=LR
+	];
+	node [label="\N",
+		shape=plaintext
+	];
+	edge [color=gray50,
+		minlen=2,
+		style=dashed
+	];
+	player	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#d0e0d0" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">player</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><U><FONT>player_id</FONT></U><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>full_name</FONT><FONT> [varchar, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>team</FONT><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>position</FONT><FONT> [player_pos, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>status</FONT><FONT> [player_status, not null]</FONT></TD></TR></TABLE></FONT>>];
+	team	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#d0e0d0" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">team</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><U><FONT>team_id</FONT></U><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>city</FONT><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>name</FONT><FONT> [varchar, not null]</FONT></TD></TR></TABLE></FONT>>];
+	player -- team	 [headlabel=<<FONT>1</FONT>>,
+		taillabel=<<FONT>0..N</FONT>>];
+	play_player	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#ececfc" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">play_player</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>gsis_id</FONT></U></I><FONT> [gameid, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>drive_id</FONT></U></I><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>play_id</FONT></U></I><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>player_id</FONT></U></I><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>team</FONT><FONT> [varchar, not null]</FONT></TD></TR></TABLE></FONT>>];
+	player -- play_player	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	game	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#ececfc" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">game</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><U><FONT>gsis_id</FONT></U><FONT> [gameid, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>start_time</FONT><FONT> [utctime, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>week</FONT><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>season_year</FONT><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>season_type</FONT><FONT> [season_phase, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>finished</FONT><FONT> [boolean, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>home_team</FONT><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>home_score</FONT><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>away_team</FONT><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>away_score</FONT><FONT> [usmallint, not null]</FONT></TD></TR></TABLE></FONT>>];
+	game -- team	 [headlabel=<<FONT>1</FONT>>,
+		label=<<FONT> home </FONT>>,
+		taillabel=<<FONT>0..N</FONT>>];
+	game -- team	 [headlabel=<<FONT>1</FONT>>,
+		label=<<FONT> away </FONT>>,
+		taillabel=<<FONT>0..N</FONT>>];
+	drive	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#ececfc" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">drive</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>gsis_id</FONT></U></I><FONT> [gameid, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><U><FONT>drive_id</FONT></U><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>start_field</FONT><FONT> [field_pos, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>start_time</FONT><FONT> [game_time, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>end_field</FONT><FONT> [field_pos, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>end_time</FONT><FONT> [game_time, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>pos_team</FONT><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>pos_time</FONT><FONT> [pos_period, null]</FONT></TD></TR></TABLE></FONT>>];
+	game -- drive	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	play	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#ececfc" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">play</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>gsis_id</FONT></U></I><FONT> [gameid, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><I><U><FONT>drive_id</FONT></U></I><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><U><FONT>play_id</FONT></U><FONT> [usmallint, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>time</FONT><FONT> [game_time, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>pos_team</FONT><FONT> [varchar, not null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>yardline</FONT><FONT> [field_pos, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>down</FONT><FONT> [smallint, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>yards_to_go</FONT><FONT> [smallint, null]</FONT></TD></TR></TABLE></FONT>>];
+	game -- play	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	game -- play_player	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	drive -- team	 [headlabel=<<FONT>1</FONT>>,
+		taillabel=<<FONT>0..N</FONT>>];
+	drive -- play	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	drive -- play_player	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	play -- team	 [headlabel=<<FONT>1</FONT>>,
+		taillabel=<<FONT>0..N</FONT>>];
+	play -- play_player	 [headlabel=<<FONT>0..N</FONT>>,
+		taillabel=<<FONT>1</FONT>>];
+	play_player -- team	 [headlabel=<<FONT>1</FONT>>,
+		taillabel=<<FONT>0..N</FONT>>];
+	meta	 [label=<<FONT FACE="Helvetica"><TABLE BGCOLOR="#fcecec" BORDER="0" CELLBORDER="1" CELLPADDING="4" CELLSPACING="0"><TR><TD><B><FONT POINT-SIZE="16">meta</FONT></B></TD></TR><TR><TD ALIGN="LEFT"><FONT>version</FONT><FONT> [smallint, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>season_type</FONT><FONT> [season_phase, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>season_year</FONT><FONT> [usmallint, null]</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT>week</FONT><FONT> [usmallint, null]</FONT></TD></TR></TABLE></FONT>>];
+}
+
