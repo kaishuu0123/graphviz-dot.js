@@ -1,4 +1,4 @@
-var viz = require('./viz.js/viz-lite.js');
+var viz = require('../viz.js/viz-lite.js');
 var concat = require('concat-stream');
 var fs = require('fs');
 var PDFDocument = require('pdfkit');
