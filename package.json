@@ -1,0 +1,19 @@
+{
+  "name": "graphviz-dot",
+  "version": "0.1.0",
+  "author": "Koki Oyatsu",
+  "license": "MIT",
+  "bin": "bin/dot.js",
+  "description": "dot (graphviz) command implement by javascript (single binary)",
+  "pkg": {
+    "assets": [
+      "node_modules/**/*.trie"
+    ]
+  },
+  "dependencies": {
+    "concat-stream": "^1.6.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "svg-to-pdfkit": "^0.1.5",
+    "yargs": "^10.0.3"
+  }
+}

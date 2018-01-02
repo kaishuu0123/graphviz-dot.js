@@ -1,0 +1,8 @@
+# dependencies
+/node_modules
+
+# output
+graphviz-dot
+graphviz-dot-linux
+graphviz-dot-macos
+graphviz-dot-win.exe
