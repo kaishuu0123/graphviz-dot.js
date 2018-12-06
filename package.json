@@ -1,13 +1,14 @@
 {
   "name": "graphviz-dot",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Koki Oyatsu",
   "license": "MIT",
   "bin": "bin/dot.js",
   "description": "dot (graphviz) command implement by javascript (single binary)",
   "pkg": {
     "assets": [
-      "node_modules/**/*.trie"
+      "node_modules/**/*.trie",
+      "node_modules/pdfkit/js/font/data/*.afm"
     ]
   },
   "dependencies": {
