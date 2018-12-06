@@ -32,8 +32,27 @@ function writeOutputFile(fileType, inputSVG, outputPath) {
   }
 }
 
+function writeOutputStdout(fileType, inputSVG) {
+  switch (fileType) {
+    case 'pdf':
+      var doc = new PDFDocument();
+      SVGtoPDF(doc, inputSVG, 0, 0)
+      doc.pipe(process.stdout)
+      doc.end();
+      break;
+    case 'png':
+      console.log("WARNING: png format is not supported yet.")
+      break;
+    case 'svg':
+      // PASS THROUGH
+    default:
+      process.stdout.write(inputSVG);
+  }
+}
+
+
 if (process.stdin.isTTY) {
-  options = yargs
+  let options = yargs
     .required(1, "DOT file is required")
     .argv;
 
@@ -54,7 +73,6 @@ if (process.stdin.isTTY) {
 } else {
   var stdin = "";
 
-  options = yargs.argv;
   process.stdin.setEncoding('utf8');
   process.stdin.on('readable', function() {
       var chunk = this.read();
@@ -62,13 +80,11 @@ if (process.stdin.isTTY) {
          stdin += chunk;
       }
   });
+
   process.stdin.on('end', function() {
     outputSVG = viz(stdin);
+    let options = yargs.argv;
 
-    if (options.output) {
-      writeOutputFile(options.type, outputSVG, options.output);
-    } else {
-      console.log(outputSVG);
-    }
+    writeOutputStdout(options.type, outputSVG);
   });
 };

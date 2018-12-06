@@ -1,6 +1,6 @@
 {
   "name": "graphviz-dot",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "author": "Koki Oyatsu",
   "license": "MIT",
   "bin": "bin/dot.js",
