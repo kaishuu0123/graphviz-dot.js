@@ -19,7 +19,6 @@
 ## How to Use? (Tutorial)
 
 * use node.js
-
 ```
 $ node bin/dot.js -T svg dot_files/test.dot -o test.svg
 ```
@@ -56,6 +55,8 @@ $ pkg package.json --targets (you want to build platform.)
 $ pkg package.json --targets node8-linux-x64
 # example (for win x64)
 $ pkg package.json --targets node8-win-x64
+# All targets
+$ pkg package.json --targets=linux-x64,linux-x86,macos-x64,win-x64,win-x86
 ```
 
 ## Credits
